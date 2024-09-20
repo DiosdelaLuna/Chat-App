@@ -3,6 +3,8 @@ import { useState, useCallback } from "react";
 import { useForm, FieldValues, SubmitHandler } from "react-hook-form";
 import Input from "../../components/input";
 import Button from "@/app/components/Button";
+import AuthSocialButton from "./AuthSocialButton";
+import { BsGithub, BsGoogle } from "react-icons/bs";
 
 type Variant = "LOGIN" | "REGISTER";
 
@@ -80,37 +82,38 @@ function AuthForm() {
 
         <div className="mt-6">
           <div className="relative">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-gray-300" />
+            </div>
+            <div className="relative flex justify-center text-sm">
+              <span className="bg-white px-2 text-gray-500">
+                Or continue with
+              </span>
+            </div>
+          </div>
+
+          <div className="mt-6 flex gap-2">
+            <AuthSocialButton
+              icon={BsGithub}
+              onClick={() => socialAction("github")}
+            />
+            <AuthSocialButton
+              icon={BsGoogle}
+              onClick={() => socialAction("google")}
+            />
+          </div>
+
+          <div className="mt-6 text-center">
+            <div className="text-sm text-gray-500">
+              {variant === "LOGIN"
+                ? "New to Messenger?"
+                : "Already have an account?"}
+            </div>
             <div
-              className="
-             absolute
-             inset-0
-             flex
-             items-center"
+              onClick={toggleVariant}
+              className="mt-2 text-sm text-gray-500 cursor-pointer hover:underline"
             >
-              <div
-                className="
-                w-full
-                border-t
-                border-gray-300
-                "
-              ></div>
-              <div
-                className="
-                relative
-                flex
-                justify-center
-                text-sm
-              
-                "
-              >
-                <span
-                  className="bg-white 
-                  px-2
-                   text-gray-500"
-                >
-                  Or continue with
-                </span>
-              </div>
+              {variant === "LOGIN" ? "Create an account" : "Log in"}
             </div>
           </div>
         </div>
