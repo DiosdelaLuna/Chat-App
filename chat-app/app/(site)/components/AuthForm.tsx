@@ -1,7 +1,7 @@
 "use client";
 import { useState, useCallback } from "react";
 import { useForm, FieldValues, SubmitHandler } from "react-hook-form";
-import Input from "../../components/input";
+import Input from "../../components/input/input";
 import Button from "@/app/components/Button";
 import AuthSocialButton from "./AuthSocialButton";
 import { BsGithub, BsGoogle } from "react-icons/bs";
@@ -57,6 +57,7 @@ function AuthForm() {
               label="Email"
               register={register}
               errors={errors}
+              disabled={isLoading}
             />
           )}
           <Input
@@ -65,6 +66,7 @@ function AuthForm() {
             type="email"
             register={register}
             errors={errors}
+            disabled={isLoading}
           />
           <Input
             id="password"
@@ -72,6 +74,7 @@ function AuthForm() {
             type="password"
             register={register}
             errors={errors}
+            disabled={isLoading}
           />
           <div>
             <Button disabled={isLoading} fullWidth type="submit">
